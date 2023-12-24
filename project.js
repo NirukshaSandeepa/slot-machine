@@ -81,14 +81,15 @@ const spin = () => {
             symbols.push(symbol); // pushing the inside of the array
         }
     }
-    const reels = [[],[],[]]
+    const reels = []
     for (let i=0; i < COLS; i++){
+        reels.push([]);
         const reelSymbols = [...symbols]; // copy from symbols array
         for (let j=0; j < ROWS; j++){
-            const randomIndex = Math.floor(Math.random() * reelSymbols.length);
-            const selectedSymbol = reelSymbols[randomIndex];
-            reels[i].push(selectedSymbol);
-            reelSymbols.splice(randomIndex, 1);
+            const randomIndex = Math.floor(Math.random() * reelSymbols.length); // randomly generate one of the symbols are available
+            const selectedSymbol = reelSymbols[randomIndex]; // insert the randomly generated symbol into reel
+            reels[i].push(selectedSymbol); // push the sysmbol to he current reel working on
+            reelSymbols.splice(randomIndex, 1); // remove it from the available symbols, so we don't select it again
         }
     }
     return reels;
