@@ -25,10 +25,19 @@ const SYMBOLS_VALUES = {
     "D": 2
 }
 
+// exit the program if user enters exit
+const checkExit = (userInput) => {
+    if (userInput.toLowerCase() == "exit"){
+        console.log("----- Program Exited! -----");
+        process.exit();
+    }
+}
+
 // Deposit some money
 const deposit = () => {
     while (true){
     const depositAmount = prompt("Enter a deposit amount: ");
+    checkExit(depositAmount);
     const numberDepositAmount = parseFloat(depositAmount); // The parse float function converts the string to the floating point number
 
     // checking the validation of the number
@@ -45,6 +54,7 @@ const deposit = () => {
 const getNumberOfLines = () => {
     while (true){
         const lines = prompt("Enter the number of lines to bet on (1-3): ");
+        checkExit(lines);
         const numberOfLines = parseFloat(lines);
     
         // checking the validation of the number of Lines
@@ -61,6 +71,7 @@ const getNumberOfLines = () => {
 const getBet = (balance,lines) =>{
     while (true){
         const bet = prompt("Enter the bet per line: "); // get the bet per line
+        checkExit(bet);
         const numberBet = parseFloat(bet);
     
         // checking the validation of the bet
@@ -147,10 +158,11 @@ const getWinnings = (rows, bet, lines) => {
 
 const game = () => {
     let balance = deposit();
+    let roundNumber = 1;
     console.log("You have a balance of $" + balance);
 
     while (true){
-        
+        console.log("--------- Round "+ roundNumber + " ---------");
         const numberOfLines = getNumberOfLines();
         const bet = getBet(balance,numberOfLines);
         balance -= bet * numberOfLines;
@@ -167,10 +179,14 @@ const game = () => {
         }
 
         console.log("You have a balance of $" + balance);
-        const playAgain = prompt("Do you want to play again (y/n)?"); // 7. play agian
+        const playAgain = prompt("Do you want to play again (y/n)?"); // play agian
+        checkExit(playAgain);
 
         if (playAgain != "y") break;
+
+        roundNumber++;
     }
+
 }; 
 
 game();
