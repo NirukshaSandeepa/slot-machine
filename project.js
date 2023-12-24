@@ -112,15 +112,15 @@ const transpose = (reels) => {
 const printRows = (rows) => {
     for (const row of rows) {
         let rowString = "";
-        for (const[i,symbol] of rows.entries()){
+        for (const[i,symbol] of row.entries()){
             rowString += symbol;
             if(i != row.length - 1){
-                rowString += " | "
+                rowString += " | " ;
             }
         }
         console.log(rowString);
     }
-}
+};
 
 // 5. Check if user won
 // 6. give the user their winnings.
@@ -167,7 +167,7 @@ const game = () => {
         }
 
         console.log("You have a balance of $" + balance);
-        const playAgain = prompt("Do you want to play again (y/n)?");
+        const playAgain = prompt("Do you want to play again (y/n)?"); // 7. play agian
 
         if (playAgain != "y") break;
     }
