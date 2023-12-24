@@ -147,9 +147,10 @@ const getWinnings = (rows, bet, lines) => {
 
 const game = () => {
     let balance = deposit();
+    console.log("You have a balance of $" + balance);
 
     while (true){
-        console.log("You have a balance of $" + balance);
+        
         const numberOfLines = getNumberOfLines();
         const bet = getBet(balance,numberOfLines);
         balance -= bet * numberOfLines;
@@ -165,6 +166,7 @@ const game = () => {
             break;
         }
 
+        console.log("You have a balance of $" + balance);
         const playAgain = prompt("Do you want to play again (y/n)?");
 
         if (playAgain != "y") break;
